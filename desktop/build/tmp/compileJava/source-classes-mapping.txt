@@ -1,0 +1,2 @@
+com/vanhoan/spaceshooter/desktop/DesktopLauncher.java
+ com.vanhoan.spaceshooter.desktop.DesktopLauncher
