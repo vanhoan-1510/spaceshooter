@@ -1,12 +1,12 @@
-com/vanhoan/spaceshooter/SpaceShooter.java
- com.vanhoan.spaceshooter.SpaceShooter
 com/vanhoan/spaceshooter/Ship.java
  com.vanhoan.spaceshooter.Ship
-com/vanhoan/spaceshooter/EnemyShip.java
- com.vanhoan.spaceshooter.EnemyShip
-com/vanhoan/spaceshooter/Laser.java
- com.vanhoan.spaceshooter.Laser
 com/vanhoan/spaceshooter/PlayerShip.java
  com.vanhoan.spaceshooter.PlayerShip
+com/vanhoan/spaceshooter/Laser.java
+ com.vanhoan.spaceshooter.Laser
+com/vanhoan/spaceshooter/EnemyShip.java
+ com.vanhoan.spaceshooter.EnemyShip
 com/vanhoan/spaceshooter/GameScreen.java
  com.vanhoan.spaceshooter.GameScreen
+com/vanhoan/spaceshooter/SpaceShooter.java
+ com.vanhoan.spaceshooter.SpaceShooter

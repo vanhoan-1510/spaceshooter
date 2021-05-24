@@ -61,6 +61,10 @@ abstract class Ship {
 
     public abstract Laser[] fireLasers();
 
+    public void translate(float xChange, float yChange){
+        boundingBox.setPosition(boundingBox.x + xChange, boundingBox.y + yChange);
+    }
+
     public boolean intersects(Rectangle otherRectangle){
 //        Rectangle thisRectangle = new Rectangle(xPosition, yPosition,width,height);
         return boundingBox.overlaps(otherRectangle);

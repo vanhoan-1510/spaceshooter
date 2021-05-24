@@ -1,5 +1,7 @@
 package com.vanhoan.spaceshooter;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -7,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -44,6 +47,7 @@ public class GameScreen implements Screen {
     //world parameters
     private final int WORLD_WIDTH = 80;
     private final int WORLD_HEIGHT = 128;
+    private final float TOUCH_MOVEMENT_THRESHOLD = 0.5f;
 
     //game object
     private Ship playerShip, enemyShip;
@@ -83,14 +87,14 @@ public class GameScreen implements Screen {
         //set up game objects
         playerShip = new PlayerShip(WORLD_WIDTH / 2, WORLD_HEIGHT / 4,
                 10, 10,
-                2, 6,
-                0.4f, 4, 45, 0.5f,
+                80, 6,
+                0.7f, 4, 45, 0.5f,
                 playerShipTextureRegion, playerShieldTextureRegion, playerLaserTextureRegion);
 
         enemyShip = new EnemyShip(WORLD_WIDTH / 2, WORLD_HEIGHT * 3 / 4,
                 10, 10,
                 2, 2,
-                0.3f, 5, 50, 0.8f,
+                0.4f, 5, 40, 1.5f,
                 enemyShipTextureRegion, enemyShieldTextureRegion ,enemyLaserTextureRegion);
 
         playerLaserList = new LinkedList<>();
@@ -103,6 +107,8 @@ public class GameScreen implements Screen {
     @Override
     public void render(float deltaTime) {
         batch.begin();
+
+        detectInput(deltaTime);
 
         playerShip.update(deltaTime);
         enemyShip.update(deltaTime);
@@ -126,6 +132,68 @@ public class GameScreen implements Screen {
         renderExplosions(deltaTime);
 
         batch.end();
+    }
+
+    private void detectInput(float deltaTime){
+        //keyboard input
+
+        //strategy: determine the max distance  the ship can move
+        //check it keys that matters  and move accordingly
+        float leftLimit, rightLimit, upLimit, downLimit;
+        leftLimit = - playerShip.boundingBox.x;
+        downLimit = - playerShip.boundingBox.y;
+        rightLimit = WORLD_WIDTH - playerShip.boundingBox.x - playerShip.boundingBox.width;
+        upLimit = WORLD_HEIGHT/2 - playerShip.boundingBox.y - playerShip.boundingBox.height;
+
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && rightLimit > 0){
+            playerShip.translate(Math.min(playerShip.movementSpeed * deltaTime, rightLimit), 0f);
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.UP) && upLimit > 0){
+            playerShip.translate(0f, Math.min(playerShip.movementSpeed * deltaTime, upLimit));
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && leftLimit < 0){
+            playerShip.translate(Math.max(-playerShip.movementSpeed * deltaTime, leftLimit), 0f);
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.DOWN) && downLimit < 0){
+            playerShip.translate(0f, Math.max(-playerShip.movementSpeed * deltaTime, downLimit));
+        }
+
+        //touch input
+        if(Gdx.input.isTouched()){
+            //get the screen position of the touch
+            float xTouchPixels = Gdx.input.getX();
+            float yTouchPixels = Gdx.input.getY();
+
+            //convert to world position
+            Vector2 touchPoint =  new Vector2(xTouchPixels, yTouchPixels);
+            touchPoint = viewport.unproject(touchPoint);
+
+            //calculate the x and y differences
+            Vector2 playerShipCentre = new Vector2(
+                    playerShip.boundingBox.x + playerShip.boundingBox.width/2,
+                    playerShip.boundingBox.y + playerShip.boundingBox.height/2);
+
+            float touchDistance = touchPoint.dst(playerShipCentre);
+
+            if (touchDistance > TOUCH_MOVEMENT_THRESHOLD){
+                float xTouchDifferent = touchPoint.x - playerShipCentre.x;
+                float yTouchDifferent = touchPoint.y - playerShipCentre.y;
+
+                //scale to the maximum speed of the ship
+                float xMove = xTouchDifferent / touchDistance * playerShip .movementSpeed * deltaTime;
+                float yMove = yTouchDifferent / touchDistance * playerShip .movementSpeed * deltaTime;
+
+                if (xMove > 0) xMove = Math.min(xMove, rightLimit);
+                else xMove = Math.max(xMove, leftLimit);
+
+                if (yMove > 0) yMove = Math.min(yMove, upLimit);
+                else yMove = Math.max(yMove, downLimit);
+
+                playerShip.translate(xMove, yMove);
+            }
+
+        }
+
     }
 
     private void detectCollisions(){

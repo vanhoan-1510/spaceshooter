@@ -41,9 +41,9 @@ enemyRed3
   index: -1
 laserBlue03
   rotate: false
-  xy: 143, 157
-  size: 9, 37
-  orig: 9, 37
+  xy: 143, 140
+  size: 9, 54
+  orig: 9, 54
   offset: 0, 0
   index: -1
 laserRed03
