@@ -3,6 +3,7 @@ package com.vanhoan.spaceshooter;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 class PlayerShip extends Ship {
+    int lives;
 
     public PlayerShip(float xCentre, float yCentre,
                       float width, float height,
@@ -13,6 +14,7 @@ class PlayerShip extends Ship {
                       TextureRegion shieldTextureRegion,
                       TextureRegion laserTextureRegion) {
         super(xCentre, yCentre, width, height, movementSpeed, shield, laserWidth, laserHeight, laserMovementSpeed, timeBetweenShots, shipTextureRegion, shieldTextureRegion, laserTextureRegion);
+        lives = 3;
     }
 
     @Override

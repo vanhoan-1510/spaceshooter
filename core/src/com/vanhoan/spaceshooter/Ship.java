@@ -53,10 +53,12 @@ abstract class Ship {
         return (timeSinceLastShot - timeBetweenShots >= 0);
     }
 
-    public void hit(Laser laser){
+    public boolean hitAndCheckDestroy(Laser laser){
          if (shield > 0){
              shield--;
+             return false;
          }
+         return true;
     }
 
     public abstract Laser[] fireLasers();
