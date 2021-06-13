@@ -3,6 +3,8 @@ package com.vanhoan.spaceshooter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -16,9 +18,7 @@ public class SplashScreen implements Screen {
     private Image splashImage = new Image(texture);
     private Stage stage = new Stage();
 
-    public SplashScreen(){
-
-    }
+    Music splashSound;
 
     @Override
     public void show() {
@@ -26,7 +26,10 @@ public class SplashScreen implements Screen {
         splashImage.setHeight(2300f);
         splashImage.setWidth(1100f);
 
+        splashSound = Gdx.audio.newMusic(Gdx.files.internal("sound/splashSound.mp3"));
+
         stage.addActor(splashImage);
+        splashSound.play();
         splashImage.addAction(Actions.sequence(Actions.alpha(0),
                                                 Actions.fadeIn(4.0f),
                                                 Actions.delay(1f),

@@ -3,6 +3,7 @@ package com.vanhoan.spaceshooter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -26,6 +27,9 @@ public class LevelScreen implements Screen {
     private Button levelFive;
     private Button backButton;
 
+    Sound clickSound;
+
+
     @Override
     public void show() {
 
@@ -39,6 +43,7 @@ public class LevelScreen implements Screen {
         levelFour = new Button(skin, "btn4");
         levelFive = new Button(skin, "btn5");
         backButton = new Button(skin, "back");
+        clickSound = Gdx.audio.newSound(Gdx.files.internal("sound/buttonSound.wav"));
 
         bg.setPosition(-10f,0f);
         levelOne.setPosition(Gdx.graphics.getWidth()/4 -80f, Gdx.graphics.getHeight()/4 +500f);
@@ -65,20 +70,47 @@ public class LevelScreen implements Screen {
         levelOne.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
+                clickSound.play();
                 ((Game)Gdx.app.getApplicationListener()).setScreen(new GameScreen());
             }
         });
 
-//        levelTwo.addListener(new ClickListener(){
-//            @Override
-//            public void clicked(InputEvent event, float x, float y){
-//                ((Game)Gdx.app.getApplicationListener()).setScreen(new Level2());
-//            }
-//        });
+        levelTwo.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                clickSound.play();
+                ((Game)Gdx.app.getApplicationListener()).setScreen(new Level2Screen());
+            }
+        });
+
+        levelThree.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                clickSound.play();
+                ((Game)Gdx.app.getApplicationListener()).setScreen(new Level3Screen());
+            }
+        });
+
+        levelFour.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                clickSound.play();
+                ((Game)Gdx.app.getApplicationListener()).setScreen(new Level4Screen());
+            }
+        });
+
+        levelFive.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                clickSound.play();
+                ((Game)Gdx.app.getApplicationListener()).setScreen(new Level5Screen());
+            }
+        });
 
         backButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
+                clickSound.play();
                 ((Game)Gdx.app.getApplicationListener()).setScreen(new MenuScreen());
             }
         });

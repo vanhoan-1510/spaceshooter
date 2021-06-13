@@ -3,6 +3,8 @@ package com.vanhoan.spaceshooter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -26,6 +28,10 @@ public class MenuScreen implements Screen {
     private Button exitButton;
     private Button facebookButton;
 
+    Sound clickSound;
+    Sound touchSound;
+    Music menuSound;
+
     @Override
     public void show() {
 
@@ -39,6 +45,10 @@ public class MenuScreen implements Screen {
         highScoreButton = new Button(skin, "btn_HighScore");
         exitButton = new Button(skin, "btn_Exit");
         facebookButton = new Button(skin, "facebook");
+
+        clickSound = Gdx.audio.newSound(Gdx.files.internal("sound/buttonSound.wav"));
+        touchSound = Gdx.audio.newSound(Gdx.files.internal("sound/touchSound.wav"));
+        menuSound = Gdx.audio.newMusic(Gdx.files.internal("sound/menuSound.mp3"));
 
 //        bg.setPosition(-200f,-300f);
         startButton.setPosition(Gdx.graphics.getWidth()/4 + 40 , Gdx.graphics.getHeight()/4 + 650f);
@@ -69,6 +79,7 @@ public class MenuScreen implements Screen {
         startButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
+                clickSound.play();
                 ((Game)Gdx.app.getApplicationListener()).setScreen(new GameScreen());
             }
         });
@@ -76,6 +87,7 @@ public class MenuScreen implements Screen {
         levelButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
+                clickSound.play();
                 ((Game)Gdx.app.getApplicationListener()).setScreen(new LevelScreen());
             }
         });
@@ -83,6 +95,7 @@ public class MenuScreen implements Screen {
         exitButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
+                clickSound.play();
                 System.exit(0);
             }
         });
@@ -90,6 +103,7 @@ public class MenuScreen implements Screen {
         facebookButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
+                clickSound.play();
                 Gdx.net.openURI("https://www.facebook.com/griezmanprovip01020");
             }
         });
@@ -112,6 +126,8 @@ public class MenuScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act();
         stage.draw();
+        menuSound.play();
+        menuSound.setLooping(true);
     }
 
     @Override
@@ -138,5 +154,6 @@ public class MenuScreen implements Screen {
     public void dispose() {
         skin.dispose();
         stage.dispose();
+        menuSound.dispose();
     }
 }

@@ -4,6 +4,8 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -56,7 +58,8 @@ public class GameScreen implements Screen {
     private  float backgroundMaxScrollingSpeed;
     private float timeBetweenEnemySpawn = 1f;
     private float enemySpawnTimer = 0f;
-
+    int count = 0;
+    int count1 = 0;
 
 
     //world parameters
@@ -72,7 +75,7 @@ public class GameScreen implements Screen {
 
 
     private LinkedList<Boss> bossList;
-    private float timeBetweenBossSpawn = 10f;
+    private float timeBetweenBossSpawn = 1f;
     private float bossSpawnTimer = 0f;
 
 
@@ -82,6 +85,13 @@ public class GameScreen implements Screen {
     BitmapFont font;
     float hudVerticalMargin, hudLeftX, hudRightX, hudCentreX, hudRow1Y, hudRow2Y, hudSectionWidth;
 
+    //sound
+    Sound defeat;
+    Sound laserSound;
+    Music gameOverSound;
+    Sound completeSound;
+    Sound explosion;
+    Music bgMusic;
 
     GameScreen() {
 
@@ -119,6 +129,14 @@ public class GameScreen implements Screen {
 
         gameOver = new Texture("complete1.png");
 
+        //sound
+        defeat = Gdx.audio.newSound(Gdx.files.internal("sound/clickSound.wav"));
+        laserSound = Gdx.audio.newSound(Gdx.files.internal("sound/laserSound.mp3"));
+        gameOverSound = Gdx.audio.newMusic(Gdx.files.internal("sound/gameOverSound.wav"));
+        completeSound = Gdx.audio.newSound(Gdx.files.internal("sound/completeSound.wav"));
+        explosion = Gdx.audio.newSound(Gdx.files.internal("sound/explosion.wav"));
+        bgMusic = Gdx.audio.newMusic(Gdx.files.internal("sound/bgMusic.mp3"));
+
         //set up game objects
         playerShip = new PlayerShip(WORLD_WIDTH / 2, WORLD_HEIGHT / 4,
                 10, 10,
@@ -152,7 +170,7 @@ public class GameScreen implements Screen {
         FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("Font.otf"));
         FreeTypeFontGenerator.FreeTypeFontParameter fontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
 
-        fontParameter.size = 72;fontParameter.borderWidth = 3.36f;
+        fontParameter.size = 60;fontParameter.borderWidth = 2.6f;
         fontParameter.color = new Color(1,1,1,0.3f);
         fontParameter.borderColor = new Color(1,1,1,0.3f);
         font = fontGenerator.generateFont(fontParameter);
@@ -176,6 +194,8 @@ public class GameScreen implements Screen {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
+        bgMusic.play();
+        bgMusic.setLooping(true);
         //scrolling background
         renderBackground(deltaTime);
 
@@ -184,7 +204,7 @@ public class GameScreen implements Screen {
             detectInput(deltaTime);
             playerShip.update(deltaTime);
 
-            if (scores <= 150) {
+            if (count <= 19) {
                 spawnEnemyShip(deltaTime);
             }
 //            spawnBoss(deltaTime);
@@ -203,7 +223,7 @@ public class GameScreen implements Screen {
             //player ship
             playerShip.draw(batch);
 
-            if (scores >= 50 && scores <= 150){
+            if (scores == 200 && count1 < 1){
                 spawnBoss(deltaTime);
             }
 
@@ -225,11 +245,14 @@ public class GameScreen implements Screen {
 
         if (playerShip.lives <= 0){
             this.dispose();
+            gameOverSound.play();
+            gameOverSound.setVolume(0.5f);
             ((Game)Gdx.app.getApplicationListener()).setScreen(new GameOverScreen());
         }
 
-        if (scores >= 500){
+        if (scores  >= 600){
             this.dispose();
+            completeSound.play(0.5f);
             ((Game)Gdx.app.getApplicationListener()).setScreen(new CompleteScreen());
         }
 
@@ -261,14 +284,13 @@ public class GameScreen implements Screen {
         enemySpawnTimer += deltaTime;
 
         while (enemySpawnTimer > timeBetweenEnemySpawn) {
-//        for (int i = 0; i <=10; i++){
             enemyShipList.add(new EnemyShip(SpaceShooter.random.nextFloat() * (WORLD_WIDTH - 10) + 5, WORLD_HEIGHT - 5,
                     10, 10,
-                    50, 1,
+                    50, 2,
                     0.7f, 5, 40, 2f,
                     enemyShipTextureRegion, enemyShieldTextureRegion, enemyLaserTextureRegion));
             enemySpawnTimer -= timeBetweenEnemySpawn;
-                break;
+            count ++;
         }
 
     }
@@ -279,10 +301,11 @@ public class GameScreen implements Screen {
         if (bossSpawnTimer > timeBetweenBossSpawn) {
             bossList.add(new Boss(SpaceShooter.random.nextFloat() * (WORLD_WIDTH - 10) + 5, WORLD_HEIGHT - 5,
                     30, 30,
-                    50, 20,
-                    2f, 5, 80, 0.8f,
+                    80, 40,
+                    4f, 7, 80, 0.8f,
                     bossTextureRegion, enemyShieldTextureRegion, enemyLaserTextureRegion));
             bossSpawnTimer -= timeBetweenBossSpawn;
+            count1++;
         }
     }
 
@@ -407,6 +430,7 @@ public class GameScreen implements Screen {
                         enemyShipListIterator.remove();
                         explosionList.add(new Explosion(explosionTexture, new Rectangle(enemyShip.boundingBox), 0.7f));
                         scores += 10;
+                        defeat.play();
                     };
                     laserListIterator.remove();
                     break;
@@ -447,6 +471,7 @@ public class GameScreen implements Screen {
                     explosionList.add(new Explosion(explosionTexture, new Rectangle(playerShip.boundingBox),
                             1f));
                         playerShip.lives -= 1;
+                        explosion.play();
 
                 }
                 laserListIterator.remove();
@@ -463,6 +488,7 @@ public class GameScreen implements Screen {
                     explosionList.add(new Explosion(explosionTexture, new Rectangle(playerShip.boundingBox),
                             1f));
                     playerShip.lives -= 1;
+                    explosion.play();
 
                 }
                 laserListIterator.remove();
@@ -494,6 +520,8 @@ public class GameScreen implements Screen {
             Laser[] lasers = playerShip.fireLasers();
             for (Laser laser : lasers) {
                 playerLaserList.add(laser);
+                laserSound.play(0.1f);
+
             }
         }
         //enemy lasers
@@ -601,5 +629,6 @@ public class GameScreen implements Screen {
     }
     @Override
     public void dispose() {
+        bgMusic.dispose();
     }
 }

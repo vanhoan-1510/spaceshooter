@@ -2,25 +2,18 @@ package com.vanhoan.spaceshooter;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.GlyphLayout;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.Align;
 
-import java.util.Locale;
+
 
 public class CompleteScreen implements Screen {
 
@@ -31,6 +24,7 @@ public class CompleteScreen implements Screen {
     private Button backButton;
     private Button playAgainButton;
     private Button nextLevel;
+    Sound clickSound;
 
 
     @Override
@@ -44,6 +38,8 @@ public class CompleteScreen implements Screen {
         playAgainButton = new Button(skin, "retry");
         nextLevel = new Button(skin, "btn_NextLevel");
 
+        clickSound = Gdx.audio.newSound(Gdx.files.internal("sound/buttonSound.wav"));
+
 
         backButton.setPosition(Gdx.graphics.getWidth()/4 - 80 , Gdx.graphics.getHeight()/4 -300f);
         playAgainButton.setPosition(Gdx.graphics.getWidth()/4 + 420f, Gdx.graphics.getHeight()/4 - 300f);
@@ -52,6 +48,7 @@ public class CompleteScreen implements Screen {
         backButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
+                clickSound.play();
                 ((Game)Gdx.app.getApplicationListener()).setScreen(new MenuScreen());
             }
         });
@@ -59,9 +56,20 @@ public class CompleteScreen implements Screen {
         playAgainButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
+                clickSound.play();
                 ((Game)Gdx.app.getApplicationListener()).setScreen(new GameScreen());
             }
         });
+
+        nextLevel.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                clickSound.play();
+                ((Game)Gdx.app.getApplicationListener()).setScreen(new Level2Screen());
+            }
+        });
+
+
 
         bg.setWidth(1100f);
         bg.setHeight(2300f);

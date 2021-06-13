@@ -3,6 +3,7 @@ package com.vanhoan.spaceshooter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -21,6 +22,8 @@ public class GameOverScreen implements Screen {
     private Button backButton;
     private Button playAgainButton;
 
+    Sound clickSound;
+
     @Override
     public void show() {
 
@@ -31,12 +34,15 @@ public class GameOverScreen implements Screen {
         backButton = new Button(skin, "back");
         playAgainButton = new Button(skin, "retry");
 
+        clickSound = Gdx.audio.newSound(Gdx.files.internal("sound/buttonSound.wav"));
+
         backButton.setPosition(Gdx.graphics.getWidth()/4 - 80 , Gdx.graphics.getHeight()/4 -300f);
         playAgainButton.setPosition(Gdx.graphics.getWidth()/4 + 420f, Gdx.graphics.getHeight()/4 - 300f);
 
         backButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
+                clickSound.play();
                 ((Game)Gdx.app.getApplicationListener()).setScreen(new MenuScreen());
             }
         });
@@ -44,6 +50,7 @@ public class GameOverScreen implements Screen {
         playAgainButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
+                clickSound.play();
                 ((Game)Gdx.app.getApplicationListener()).setScreen(new GameScreen());
             }
         });
