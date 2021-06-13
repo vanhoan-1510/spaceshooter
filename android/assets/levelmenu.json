@@ -1,0 +1,21 @@
+{
+//com.badlogic.gdx.graphics.g2d.BitmapFont:{
+//carterone-font: { file: fonts/carterone.fnt }
+//},
+com.badlogic.gdx.graphics.Color: {
+	green: { a: 1, b: 0, g: 1, r: 0 },
+	white: { a: 1, b: 1, g: 1, r: 1 },
+	red: { a: 1, b: 0, g: 0, r: 1 },
+	black: { a: 1, b: 0, g: 0, r: 0 }
+},
+com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
+	btn1: { down: btn1, up: btn1},
+	btn2: { down: btn2, up: btn2},
+	btn3: { down: btn3, up: btn3},
+	btn4: { down: btn4, up: btn4},
+	btn5: { down: btn5, up: btn5},
+	btn_ArrowBack: { down: btn_ArrowBack, up: btn_ArrowBack},
+	btn_ArrowRetry: { down: btn_ArrowRetry, up: btn_ArrowRetry}
+}
+
+}

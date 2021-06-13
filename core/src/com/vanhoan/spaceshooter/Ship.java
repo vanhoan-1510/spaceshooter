@@ -58,7 +58,11 @@ abstract class Ship {
              shield--;
              return false;
          }
-         return true;
+         else {
+             shield++;
+             return true;
+         }
+
     }
 
     public abstract Laser[] fireLasers();

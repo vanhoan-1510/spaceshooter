@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "852165098295",
+    "project_id": "space-shooter-ba55c",
+    "storage_bucket": "space-shooter-ba55c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:852165098295:android:6b83e14e9c45d3233a38b2",
+        "android_client_info": {
+          "package_name": "com.vanhoan.spaceshooter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "852165098295-m83guuk6hql9li4t2gpjeeksoc5csl0f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDH_1oTc7SYWBDdpeXimKGzsaZGwyBDChU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "852165098295-m83guuk6hql9li4t2gpjeeksoc5csl0f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

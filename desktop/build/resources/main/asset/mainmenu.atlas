@@ -1,0 +1,146 @@
+
+mainmenu.png
+size: 8192, 2048
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+back
+  rotate: false
+  xy: 0, 70
+  size: 120, 120
+  orig: 120, 120
+  offset: 0, 0
+  index: -1
+bg
+  rotate: false
+  xy: 1600, 250
+  size: 1080, 1680
+  orig: 1080, 1680
+  offset: 0, 0
+  index: -1
+bg2
+  rotate: false
+  xy: 4840, 135
+  size: 1060, 1795
+  orig: 1060, 1795
+  offset: 0, 0
+  index: -1
+btn1
+  rotate: false
+  xy: 360, 190
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+btn2
+  rotate: false
+  xy: 120, 120
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+btn3
+  rotate: false
+  xy: 720, 260
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+btn4
+  rotate: false
+  xy: 6020, 1720
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+btn5
+  rotate: false
+  xy: 0, 0
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+btn_ArrowBack
+  rotate: false
+  xy: 6260, 1798
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+btn_ArrowRetry
+  rotate: false
+  xy: 5900, 1600
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+btn_Exit
+  rotate: false
+  xy: 360, 260
+  size: 360, 70
+  orig: 360, 70
+  offset: 0, 0
+  index: -1
+btn_HighScore
+  rotate: false
+  xy: 0, 260
+  size: 360, 70
+  orig: 360, 70
+  offset: 0, 0
+  index: -1
+btn_Levels
+  rotate: false
+  xy: 5900, 1860
+  size: 360, 70
+  orig: 360, 70
+  offset: 0, 0
+  index: -1
+btn_NextLevel
+  rotate: false
+  xy: 6260, 1868
+  size: 269, 62
+  orig: 269, 62
+  offset: 0, 0
+  index: -1
+btn_Option
+  rotate: false
+  xy: 0, 190
+  size: 360, 70
+  orig: 360, 70
+  offset: 0, 0
+  index: -1
+btn_Start
+  rotate: false
+  xy: 5900, 1790
+  size: 360, 70
+  orig: 360, 70
+  offset: 0, 0
+  index: -1
+complete
+  rotate: false
+  xy: 2680, 184
+  size: 1080, 1746
+  orig: 1080, 1746
+  offset: 0, 0
+  index: -1
+facebook
+  rotate: false
+  xy: 0, 330
+  size: 1600, 1600
+  orig: 1600, 1600
+  offset: 0, 0
+  index: -1
+gameOver
+  rotate: false
+  xy: 3760, 184
+  size: 1080, 1746
+  orig: 1080, 1746
+  offset: 0, 0
+  index: -1
+retry
+  rotate: false
+  xy: 5900, 1670
+  size: 120, 120
+  orig: 120, 120
+  offset: 0, 0
+  index: -1

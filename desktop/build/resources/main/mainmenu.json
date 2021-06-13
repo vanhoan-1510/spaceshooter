@@ -1,0 +1,30 @@
+{
+//com.badlogic.gdx.graphics.g2d.BitmapFont:{
+//carterone-font: { file: fonts/carterone.fnt }
+//},
+com.badlogic.gdx.graphics.Color: {
+	green: { a: 1, b: 0, g: 1, r: 0 },
+	white: { a: 1, b: 1, g: 1, r: 1 },
+	red: { a: 1, b: 0, g: 0, r: 1 },
+	black: { a: 1, b: 0, g: 0, r: 0 }
+},
+com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
+	btn_Start: { down: btn_Start, up: btn_Start},
+	btn_Levels: { down: btn_Levels, up: btn_Levels},
+	btn_Option: { down: btn_Option, up: btn_Option},
+	btn_HighScore: { down: btn_HighScore, up: btn_HighScore},
+	btn_Exit: { down: btn_Exit, up: btn_Exit},
+
+	btn1: { down: btn1, up: btn1},
+	btn2: { down: btn2, up: btn2},
+	btn3: { down: btn3, up: btn3},
+	btn4: { down: btn4, up: btn4},
+	btn5: { down: btn5, up: btn5},
+	back: { down: back, up: back},
+	btn_ArrowRetry: { down: btn_ArrowRetry, up: btn_ArrowRetry},
+	facebook: { down: facebook, up: facebook},
+	retry: { down: retry, up: retry},
+	btn_NextLevel: { down: btn_NextLevel, up: btn_NextLevel},
+}
+
+}

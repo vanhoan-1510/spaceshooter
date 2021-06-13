@@ -4,72 +4,79 @@ size: 4096, 4096
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
-SpaceBackground2
-  rotate: false
-  xy: 0, 194
-  size: 1080, 3840
-  orig: 1080, 3840
-  offset: 0, 0
-  index: -1
 Starscape01
   rotate: false
-  xy: 1080, 2114
+  xy: 1080, 2118
   size: 1080, 1920
   orig: 1080, 1920
   offset: 0, 0
   index: -1
 Starscape02
   rotate: false
-  xy: 2160, 2114
+  xy: 2160, 2118
   size: 1080, 1920
   orig: 1080, 1920
   offset: 0, 0
   index: -1
 Starscape03
   rotate: false
-  xy: 1080, 194
+  xy: 1080, 198
   size: 1080, 1920
   orig: 1080, 1920
   offset: 0, 0
   index: -1
-enemyRed3
+background
   rotate: false
-  xy: 3240, 3950
-  size: 103, 84
-  orig: 103, 84
+  xy: 0, 198
+  size: 1080, 3840
+  orig: 1080, 3840
   offset: 0, 0
   index: -1
-laserBlue03
+enemyShip
   rotate: false
-  xy: 143, 140
-  size: 9, 54
-  orig: 9, 54
+  xy: 120, 94
+  size: 122, 104
+  orig: 122, 104
   offset: 0, 0
   index: -1
-laserRed03
+enemy_boss
   rotate: false
-  xy: 2160, 1969
-  size: 9, 37
-  orig: 9, 37
+  xy: 0, 44
+  size: 120, 154
+  orig: 120, 154
   offset: 0, 0
   index: -1
-playerShip2_green
+enemy_laser
   rotate: false
   xy: 0, 0
-  size: 112, 75
-  orig: 112, 75
+  size: 14, 44
+  orig: 14, 44
+  offset: 0, 0
+  index: -1
+playerShip
+  rotate: false
+  xy: 2160, 1892
+  size: 104, 107
+  orig: 104, 107
+  offset: 0, 0
+  index: -1
+player_laser
+  rotate: false
+  xy: 2303, 2074
+  size: 14, 44
+  orig: 14, 44
   offset: 0, 0
   index: -1
 shield1
   rotate: false
-  xy: 2160, 2006
+  xy: 3240, 3930
   size: 133, 108
   orig: 133, 108
   offset: 0, 0
   index: -1
 shield2
   rotate: false
-  xy: 0, 75
+  xy: 2160, 1999
   size: 143, 119
   orig: 143, 119
   offset: 0, 0
