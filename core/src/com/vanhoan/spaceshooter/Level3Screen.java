@@ -247,13 +247,13 @@ public class Level3Screen implements Screen {
             this.dispose();
             gameOverSound.play();
             gameOverSound.setVolume(0.5f);
-            ((Game)Gdx.app.getApplicationListener()).setScreen(new GameOverScreen());
+            ((Game)Gdx.app.getApplicationListener()).setScreen(new GameOV3());
         }
 
         if (scores  >= 800){
             this.dispose();
             completeSound.play(0.5f);
-            ((Game)Gdx.app.getApplicationListener()).setScreen(new CompleteScreen());
+            ((Game)Gdx.app.getApplicationListener()).setScreen(new CPL3());
         }
 
         //explosions

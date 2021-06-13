@@ -247,13 +247,13 @@ public class Level5Screen implements Screen {
             this.dispose();
             gameOverSound.play();
             gameOverSound.setVolume(0.5f);
-            ((Game)Gdx.app.getApplicationListener()).setScreen(new GameOverScreen());
+            ((Game)Gdx.app.getApplicationListener()).setScreen(new GameOV5());
         }
 
         if (scores  >= 2200){
             this.dispose();
             completeSound.play(0.5f);
-            ((Game)Gdx.app.getApplicationListener()).setScreen(new CompleteScreen());
+            ((Game)Gdx.app.getApplicationListener()).setScreen(new CPL5());
         }
 
         //explosions

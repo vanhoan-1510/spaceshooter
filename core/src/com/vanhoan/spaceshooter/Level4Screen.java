@@ -247,13 +247,13 @@ public class Level4Screen implements Screen {
             this.dispose();
             gameOverSound.play();
             gameOverSound.setVolume(0.5f);
-            ((Game)Gdx.app.getApplicationListener()).setScreen(new GameOverScreen());
+            ((Game)Gdx.app.getApplicationListener()).setScreen(new GameOV4());
         }
 
         if (scores  >= 1500f){
             this.dispose();
             completeSound.play(0.5f);
-            ((Game)Gdx.app.getApplicationListener()).setScreen(new CompleteScreen());
+            ((Game)Gdx.app.getApplicationListener()).setScreen(new CPL4());
         }
 
         //explosions
