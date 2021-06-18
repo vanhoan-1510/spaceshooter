@@ -1,15 +1,10 @@
 package com.vanhoan.spaceshooter;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.Random;
 
 public class SpaceShooter extends Game {
-
-	int gameState = 0;
 	public static Random random = new Random();
 
 	@Override
@@ -17,7 +12,6 @@ public class SpaceShooter extends Game {
 
 		SplashScreen splashScreen = new SplashScreen();
 		setScreen(splashScreen);
-
 	}
 
 
